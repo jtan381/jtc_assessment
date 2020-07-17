@@ -10,6 +10,6 @@
 - MD5 hash done.
 
 # Incomplete
-- Register page never do validtion check
+- Register page never do validtion check.
 - Result page delete button not working.
 
