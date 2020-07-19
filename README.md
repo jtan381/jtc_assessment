@@ -4,12 +4,11 @@
 
 # Done
 - All 3 page UI template done.
-- Login page validation(only valid user in the database are able to login).
-- Register page ensure name and passworld field are fill.
-- Result page displayed all record in the database.
+- Login page, validation(only valid user in the database are able to login).
+- Register page, ensure name and passworld field are fill.
+- Result page, displayed all record in database.
 - MD5 hash done.
 
 # Incomplete
-- Register page never do validtion check.
-- Result page delete button not working.
-
+- Register page, no validtion check(exiting user).
+- Result page, delete button not working.
