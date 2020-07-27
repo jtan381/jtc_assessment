@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import { MdDeleteForever } from "react-icons/md";
 import { Button, Table } from "react-bootstrap";
 import { IconContext } from "react-icons";
@@ -7,39 +7,60 @@ import styled from "styled-components";
 import axios from "axios";
 
 const Wrapper = styled.div`
-  text-align: center;
-  background: #d3d3d3;
-  // padding: 0.25em 1em;
-  height: 100%;
+  background: #D3D3D3;
+  min-height: 100vh;
+  display: flex;  
+  justify-content: center;
+  align-items: center;
 `;
 
 const Wrapper2 = styled.div`
   width: 80%;
   height: 95%;
   background: #ffffff;
-  display: inline-block;
-  margin: 1%;
+  padding: 1%;
+
+  display: grid; 
+  grid-template-rows: auto;
+  grid-template-columns: auto ;
 `;
 
 const Header = styled.h1`
   text-align: left;
 `;
 
-const handleDetele = (e) => {};
-
 export default (props) => {
+  const history = useHistory();
   const [record, setRecord] = useState([]);
-  const loadDefault = () => {
-    axios
-      .get(
-        `https://peter-htet.outsystemscloud.com/ITDInterviews/rest/Users/GetAllUsers`
-      )
-      .then((res) => {
-        setRecord(res.data);
-      });
-  };
 
-  loadDefault();
+  useEffect(()=>{
+      const fetchData = async () => {
+      const result = await axios.get(
+        'https://peter-htet.outsystemscloud.com/ITDInterviews/rest/Users/GetAllUsers',
+      );
+      setRecord(result.data);
+    };
+
+    fetchData();
+  },[]);
+
+  const handleDetele = (id, record, setRecord) => {
+    axios
+    .get(
+      `https://peter-htet.outsystemscloud.com/ITDInterviews/rest/Users/DeleteUser?id=` +
+      id
+    )
+    .then((res) => {
+      console.log(res);
+      const status = res.data.IsSuccess;
+      console.log(status);
+      if (status === true) {
+        // redicrect to main page
+        console.log("refresh")
+        history.go();
+      }
+    });
+  };
 
   return (
     <Wrapper>
@@ -56,9 +77,9 @@ export default (props) => {
             </tr>
           </thead>
           <tbody>
-            {record.map((data, index) => {
+            {record.map((data) => {
               return (
-                <tr>
+                <tr key={data.Id}>
                   {/* <th>{index}</th> */}
                   <th>{data.name}</th>
                   <th>{data.email}</th>
@@ -68,9 +89,9 @@ export default (props) => {
                   <th>
                     <Button
                       variant="link"
-                      onClick={handleDetele}
-                      key={index}
-                      value={index}
+                      key={data.Id}
+                      onClick={() => handleDetele(data.Id, record, setRecord)}
+                      value={data.Id}
                     >
                       <IconContext.Provider
                         value={{ color: "#8B0000", size: "30px" }}
