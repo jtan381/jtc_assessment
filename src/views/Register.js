@@ -1,25 +1,35 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { MdBook } from "react-icons/md";
-import { Container, Form, Button } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import { IconContext } from "react-icons";
 import styled from "styled-components";
 import axios from "axios";
 
 const Wrapper = styled.div`
-  text-align: center;
-  background: #8b0000;
-  // padding: 0.25em 1em;
-  height: 100%;
+  background: #8B0000;
+  min-height: 100vh;
+  display: flex;  
+  justify-content: center;
+  align-items: center;
 `;
 
 const Wrapper2 = styled.div`
-  width: 400px;
-  height: 95%;
+  width: 30%;
+  height: 100%;
   background: #ffffff;
-  border-radius: 25px;
-  display: inline-block;
-  margin: 1%;
+  border-radius: 3%;
+
+  display: grid; 
+  grid-template-rows: auto;
+  grid-template-columns: auto ;
+  grid-gap: 1%;
+  justify-items: center;
+`;
+
+const Wrapper3 = styled.div`
+  display: grid; 
+  justify-items: center;
 `;
 
 export default (props) => {
@@ -87,12 +97,13 @@ export default (props) => {
   return (
     <Wrapper>
       <Wrapper2>
-        <Container style={{ width: "300px" }}>
-          <IconContext.Provider value={{ color: "#8B0000", size: "200px" }}>
-            {React.createElement(MdBook)}
-          </IconContext.Provider>
 
-          <Form onSubmit={handleSubmit} onChange={handleChange}>
+        <IconContext.Provider value={{ color: "#8B0000", size: "200px" }}>
+          {React.createElement(MdBook)}
+        </IconContext.Provider>
+
+        <Form onSubmit={handleSubmit} onChange={handleChange}>
+          <Wrapper3>
             <Form.Group controlId="name">
               <Form.Control type="input" placeholder="name*" required />
             </Form.Group>
@@ -100,27 +111,26 @@ export default (props) => {
             <Form.Group controlId="email">
               <Form.Control type="email" placeholder="email" />
             </Form.Group>
-            <Form.Group controlId="formBasicCheckbox"></Form.Group>
-
+          
             <Form.Group controlId="phone">
               <Form.Control type="phone" placeholder="phone" />
             </Form.Group>
-            <Form.Group controlId="formBasicCheckbox"></Form.Group>
-
+    
             <Form.Group controlId="password">
               <Form.Control type="password" placeholder="password*" required />
             </Form.Group>
-            <Form.Group controlId="formBasicCheckbox"></Form.Group>
-
+          
             <Button variant="primary" type="submit">
               Register
             </Button>
-          </Form>
-          <p>
-            Aready Registed?
-            <a href="http://localhost:3000/">Sign in!</a>
-          </p>
-        </Container>
+          </Wrapper3>
+        </Form>
+        
+        <p>
+          Aready Registed?
+          <a href="http://localhost:3000/">Sign in!</a>
+        </p>
+     
       </Wrapper2>
     </Wrapper>
   );
