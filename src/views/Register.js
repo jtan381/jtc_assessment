@@ -32,6 +32,18 @@ const Wrapper3 = styled.div`
   justify-items: center;
 `;
 
+const Button1 = styled.button`
+  background: none!important;
+  border: none;
+  padding: 0!important;
+  /*optional*/
+  font-family: arial, sans-serif;
+  /*input has OS specific font-family*/
+  color: #069;
+  text-decoration: underline;
+  cursor: pointer;
+`;
+
 export default (props) => {
   const history = useHistory();
   const [currentName, setCurrentName] = useState("");
@@ -94,6 +106,10 @@ export default (props) => {
     e.preventDefault();
   };
 
+  const handleHome = ()=>{
+    history.push("/");
+  }
+
   return (
     <Wrapper>
       <Wrapper2>
@@ -128,7 +144,7 @@ export default (props) => {
         
         <p>
           Aready Registed?
-          <a href="http://localhost:3000/">Sign in!</a>
+          <Button1  onClick={handleHome}>Sign in!</Button1>
         </p>
      
       </Wrapper2>

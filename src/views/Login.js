@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { MdBook } from "react-icons/md";
-import { Container, Form, Button } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import { IconContext } from "react-icons";
 import styled from "styled-components";
 import axios from "axios";
@@ -30,6 +30,18 @@ const Wrapper2 = styled.div`
 const Wrapper3 = styled.div`
   display: grid; 
   justify-items: center;
+`;
+
+const Button1 = styled.button`
+  background: none!important;
+  border: none;
+  padding: 0!important;
+
+  font-family: arial, sans-serif;
+
+  color: #069;
+  text-decoration: underline;
+  cursor: pointer;
 `;
 
 export default (props) => {
@@ -74,6 +86,10 @@ export default (props) => {
     history.push("/");
   };
 
+  const handleRegister = (e)=>{
+    history.push("/Register");
+  }
+
   return (
     <Wrapper>
       <Wrapper2>
@@ -99,7 +115,7 @@ export default (props) => {
         </Form>
         <p>
           Not Registed?
-          <a href="http://localhost:3000/Register">Create an account!</a>
+          <Button1 onClick={handleRegister}>Create an account!</Button1>
         </p>
 
       </Wrapper2>
