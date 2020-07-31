@@ -12,3 +12,11 @@
 # Incomplete
 - Register page, no validtion check(exiting user).
 - Result page, delete button not working.
+
+# Dockerize
+# Build docker images
+- docker build --tag <name:tag> .
+
+# Run docker images on container
+- docker run --rm -ti -p 8000:3000 <images>
+
